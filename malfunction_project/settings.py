@@ -1,9 +1,12 @@
-from pathlib import Path
+import os
 
+from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
-SECRET_KEY = 'django-insecure-e9azr&ed@03hebp29q@9$^c=f6bbakz@u_p#dhv9na+w8(m-6r'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SECRET_KEY = os.getenv('KEY_SEC', default='secret_key')
 
 DEBUG = True
 
@@ -50,9 +53,13 @@ WSGI_APPLICATION = 'malfunction_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', default='malfunction'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='10264'),
+        'HOST': os.getenv('DB_HOST', default='localhost'),
+        'PORT': os.getenv('DB_PORT', default='5432'),
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
