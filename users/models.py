@@ -2,7 +2,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from users.slug_field import CyrillicAutoSlugField
+from users.generate_slug import generate_slug
 
 
 class Department(models.Model):
@@ -51,21 +51,23 @@ class CustomUser(AbstractUser):
     )
     first_name = models.CharField(
         verbose_name='Имя',
-        max_length=150,
+        max_length=100,
         blank=False,
         help_text='Укажите ваше имя',
     )
     last_name = models.CharField(
         verbose_name='Фамилия',
-        max_length=150,
+        max_length=100,
         blank=False,
         help_text='Укажите вашу фамилию',
     )
-    username = CyrillicAutoSlugField(
-        populate_from='get_full_name',
+    username = models.SlugField(
+        verbose_name='Слаг',
+        max_length=200,
         unique=True,
-        verbose_name='Username',
+        blank=True,
     )
+
     date_joined = models.DateTimeField(
         verbose_name='Дата регистрации',
         auto_now_add=True,
@@ -86,3 +88,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.get_full_name()
+
+    def save(self, *args, **kwargs):
+        if not self.username:
+            self.username = generate_slug(self.first_name, self.last_name)
+        super().save(*args, **kwargs)
