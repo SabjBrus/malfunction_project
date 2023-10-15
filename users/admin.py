@@ -10,12 +10,12 @@ class CustomUserAdmin(admin.ModelAdmin):
         'email',
         'first_name',
         'last_name',
-        'username',
+        'slug',
         'date_joined',
         'department',
     )
-    list_filter = ('username', 'email')
-    search_fields = ('username', 'email')
+    list_filter = ('slug', 'email')
+    search_fields = ('slug', 'email')
     empty_value_display = '-пусто-'
 
 
