@@ -26,3 +26,22 @@ Cервис сбора и учёта ошибок и неисправносте�
 | Method | Request | Response     |
 |--------|---------|--------------|
 | POST   | -       | HTTP_200_OK  |
+
+### Действия пользователя
+
+<http://127.0.0.1:8000/api/auth/users/me/>
+
+| Method | Request              | Response                                         |
+|--------|----------------------|--------------------------------------------------|
+| GET    | -                    | HTTP_200_OK                                      |
+| PUT    | User.REQUIRED_FIELDS | HTTP_200_OK or<br/> HTTP_400_BAD_REQUEST         |
+| PATCH  | User.REQUIRED_FIELDS | HTTP_200_OK or<br/> HTTP_400_BAD_REQUEST         |
+| DELETE | current_password     | HTTP_204_NO_CONTENT or<br/> HTTP_400_BAD_REQUEST |
+
+### Список пользователей
+
+<http://127.0.0.1:8000/api/users/>
+
+| Method | Request | Response    |
+|--------|---------|-------------|
+| GET    | -       | HTTP_200_OK |
