@@ -1,7 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin
 
 from users.generate_slug import generate_slug
 
@@ -62,15 +62,18 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name='Пароль',
         max_length=150,
         help_text='Укажите ваш пароль',
-        validators=[RegexValidator(
-            regex=(
-                r'^[A-Za-zА-Яа-я0-9~@#$%^&*()_+{}\[\]:;"<>/?!\.\'`-]{5,40}$'),
-            message=(
-                "Пароль должен содержать от 5 до 50 символов и может"
-                " включать буквы, цифры и специальные символы:"
-                " ~@#$%^&*()_+{}[]:;\"<>/?!.'`-")
-        )
-        ]
+        validators=[
+            RegexValidator(
+                regex=(
+                    r'^[A-Za-zА-Яа-я0-9~@#$%^&*()_+{}\[\]:;"<>/?!\.\'`-]{5,40}$'
+                ),
+                message=(
+                    "Пароль должен содержать от 5 до 50 символов и может"
+                    " включать буквы, цифры и специальные символы:"
+                    " ~@#$%^&*()_+{}[]:;\"<>/?!.'`-"
+                ),
+            )
+        ],
     )
     first_name = models.CharField(
         verbose_name='Имя',
