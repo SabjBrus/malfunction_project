@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'djoser',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
+    'defects.apps.DefectsConfig',
 ]
 
 MIDDLEWARE = [
