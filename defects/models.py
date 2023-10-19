@@ -15,4 +15,3 @@ class Defect(models.Model):
         verbose_name='Дата регистрации замечания',
         auto_now_add=True,
     )
-
