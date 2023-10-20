@@ -93,7 +93,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
         blank=True,
     )
-
     date_joined = models.DateTimeField(
         verbose_name='Дата регистрации',
         auto_now_add=True,
