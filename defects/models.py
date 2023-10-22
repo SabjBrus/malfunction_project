@@ -8,6 +8,12 @@ STATUSES = (
     ('DONE', 'done'),
 )
 
+PRIORITIES = (
+    ('LOW', 'low'),
+    ('HIGH', 'high'),
+    ('MEDIUM', 'medium'),
+)
+
 
 class Defect(models.Model):
     title = models.CharField(
@@ -30,6 +36,13 @@ class Defect(models.Model):
         max_length=100,
         blank=False,
         help_text='Опишите замечание',
+    )
+    priority = models.CharField(
+        verbose_name='Приоритет',
+        max_length=10,
+        choices=PRIORITIES,
+        default='LOW',
+        help_text='Укажите приоритет замечания'
     )
     status = models.CharField(
         verbose_name='Статус',
