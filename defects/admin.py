@@ -10,6 +10,7 @@ class DefectAdmin(admin.ModelAdmin):
         'user',
         'title',
         'body',
+        'priority',
         'status',
         'department',
         'created_at',
