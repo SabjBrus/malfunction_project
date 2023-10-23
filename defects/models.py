@@ -42,7 +42,7 @@ class Defect(models.Model):
         max_length=10,
         choices=PRIORITIES,
         default='LOW',
-        help_text='Укажите приоритет замечания'
+        help_text='Укажите приоритет замечания',
     )
     status = models.CharField(
         verbose_name='Статус',
