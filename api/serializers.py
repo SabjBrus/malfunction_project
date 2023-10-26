@@ -1,6 +1,7 @@
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
 
+from defects.models import Defect
 from users.models import CustomUser, Department
 
 
@@ -20,3 +21,9 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
         fields = ('id', 'name', 'slug')
+
+
+class DefectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Defect
+        fields = '__all__'
