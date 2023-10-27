@@ -26,4 +26,12 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class DefectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Defect
-        fields = '__all__'
+        fields = (
+            'id',
+            'title',
+            'body',
+            'priority',
+            'status',
+            'created_at',
+            'department',
+        )
