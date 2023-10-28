@@ -1,7 +1,8 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 from api.serializers import CustomUserSerializer, DepartmentSerializer, DefectSerializer
 from defects.models import Defect
+from api.pagination import DefectsPagination
 from users.models import CustomUser, Department
 
 
@@ -18,3 +19,5 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 class DefectViewSet(viewsets.ModelViewSet):
     queryset = Defect.objects.all()
     serializer_class = DefectSerializer
+    permission_classes = (permissions.IsAuthorOrReadOnly,)
+    pagination_class = DefectsPagination
