@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from api.serializers import CustomUserSerializer, DepartmentSerializer, DefectSerializer
 from defects.models import Defect
@@ -22,3 +23,11 @@ class DefectViewSet(viewsets.ModelViewSet):
     serializer_class = DefectSerializer
     permission_classes = (OwnerOrReadOnly,)
     pagination_class = DefectsPagination
+    filter_backends = (
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    )
+    filterset_fields = ('priority', 'status')
+    search_fields = ('title',)
+    ordering_fields = ('priority', 'status')
