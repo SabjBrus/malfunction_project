@@ -127,11 +127,11 @@ DJOSER = {
 }
 
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Bearer': {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
-            'in': 'header'
-      }
-   }
+            'in': 'header',
+        },
+    },
 }

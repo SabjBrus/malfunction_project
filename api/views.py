@@ -1,10 +1,11 @@
-from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, viewsets
 
-from api.serializers import CustomUserSerializer, DepartmentSerializer, DefectSerializer
-from defects.models import Defect
 from api.pagination import DefectsPagination
 from api.permissions import OwnerOrReadOnly
+from api.serializers import (CustomUserSerializer, DefectSerializer,
+                             DepartmentSerializer)
+from defects.models import Defect
 from users.models import CustomUser, Department
 
 
